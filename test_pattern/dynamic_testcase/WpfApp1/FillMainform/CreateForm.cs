@@ -115,7 +115,7 @@ namespace WpfApp1.FillMainform
             if (name == "labelId")
                 label.Content = "Глобальный ID";
             label.HorizontalAlignment = HorizontalAlignment.Right;
-            label.Foreground = (Brush)_bc.ConvertFrom("#11110f");
+            label.Foreground = (Brush)_bc.ConvertFrom("#ffffff");
             return label;
         }
     }

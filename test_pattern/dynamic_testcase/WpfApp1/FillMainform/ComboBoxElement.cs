@@ -18,8 +18,10 @@ namespace WpfApp1.FillMainform
             GetComboBox.Height = height;
             GetComboBox.HorizontalAlignment = HorizontalAlignment.Left;
             GetComboBox.Name = "ComboBox" + count;
-            GetComboBox.Items.Add("Выбрать элемент");
+            GetComboBox.Items.Add("Выбрать действие");
+            GetComboBox.Items.Add("Найти элемент");
             GetComboBox.Items.Add("Сравнить элемент");
+            GetComboBox.SelectedItem = GetComboBox.Items.GetItemAt(0);
             
            
             GetComboBox.VerticalContentAlignment = VerticalAlignment.Center;
@@ -29,19 +31,22 @@ namespace WpfApp1.FillMainform
             GetComboBox.SelectionChanged += delegate
             {
                 var obj = LogicalTreeHelper.FindLogicalNode(GetComboBox.Parent, "row"+count);
-                
-                if ((string) GetComboBox.SelectedItem == "Выбрать элемент")
+
+                switch ((string) GetComboBox.SelectedItem)
                 {
-                    var check = LogicalTreeHelper.FindLogicalNode(obj ?? throw new InvalidOperationException(), "TextBox"+count);
-                    if (check != null) return;
-                    var textbox = new TextBoxElement(count, 80.0, 30.0);
+                    case "Найти элемент":
+                        var check = LogicalTreeHelper.FindLogicalNode(obj ?? throw new InvalidOperationException(), "TextBox"+count);
+                        if (check != null) return;
+                        var textbox = new TextBoxElement(count, 80.0, 30.0);
                     
-                    (obj as StackPanel)?.Children.Add(textbox.GetTextBox);
+                        (obj as StackPanel)?.Children.Add(textbox.GetTextBox);
+                        break;
+                    case "Сравнить элемент":
+                        break;
+                    default:
+                        MessageBox.Show("notfind");
+                        break;
                 }
-                else if ((string) GetComboBox.SelectedItem == "Сравнить элемент")
-                {
-                }
-                else MessageBox.Show("notfind");
             };
 
         }

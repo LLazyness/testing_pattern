@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace WpfApp1.FillMainform
 {
@@ -19,7 +22,8 @@ namespace WpfApp1.FillMainform
             GetTestcase.VerticalAlignment = VerticalAlignment.Center;
             GetTestcase.MinWidth = 1024;
             GetTestcase.Margin = new Thickness(5, 5, 5, 5);
-            GetTestcase.Background = (Brush)_bc.ConvertFrom("#b0d1e5");
+            GetTestcase.Background =
+                new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/WpfApp1;component/picture/banner-landing-dark-blue.png")));
             GetTestcase.Name = "testcase" + countOfTestCase;
         }
         

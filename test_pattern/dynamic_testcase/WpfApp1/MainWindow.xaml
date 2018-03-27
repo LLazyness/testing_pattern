@@ -3,13 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         
         Title="MainWindow" Height="auto" Width="1023.922">
 
-    <Grid Background="White">
-        
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="picture/WVoQJ6.jpg"
+                        AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
         <ScrollViewer Height="auto">
 
             <StackPanel x:Name="MainBlock" MinWidth="1024" HorizontalAlignment="Center" x:FieldModifier="public">
@@ -18,10 +20,15 @@
             </StackPanel>
             
         </ScrollViewer>
-        <StackPanel x:Name="StackPanel_Button" Width="300"  HorizontalAlignment="Left" VerticalAlignment="Center" Background="#b0d1e5" Margin="30">
+        <StackPanel x:Name="StackPanelButton" Width="300"  HorizontalAlignment="Left" VerticalAlignment="Center" Background="#11242F" Margin="30">
             
                 <StackPanel>
-                <Button x:Name="Add_test_case" Height ="30" Width="150" Click="Add_test_case_click" Margin="30,30" Content="Добавить тест кейс" Background="#fcfcfc"/>
+                <StackPanel.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="picture/banner-landing-dark-blue.png"
+                                AlignmentY="Top" AlignmentX="Center"/>
+                </StackPanel.Background>
+                <Button x:Name="AddTestCase" Height ="30" Width="150" Click="Add_test_case_click" Margin="30,30" Content="Добавить тест кейс" Background="#fcfcfc"/>
+                <Button x:Name="Execute" Height ="30" Width="150" Click="Execute_OnClick" Margin="30,30" Content="Выполнить" Background="#fcfcfc"/>
                 <Button x:Name="Exit" Height ="30" Width="150" Click="Exit_click" Margin="30,30" Content="Выйти" Background="#fcfcfc"/>
             </StackPanel>
             

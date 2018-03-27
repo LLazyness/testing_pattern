@@ -32,9 +32,9 @@ namespace WpfApp1.FillMainform
 
                 var rowsCount = (short)((StackPanel) obj).Children.Count;
 
-                var combobox = ob.CreateComboBox(rowsCount, 135, 35);
-
                 var row = item.CreateRowTestCase(rowsCount, 400.0);
+
+                var combobox = ob.CreateComboBox(rowsCount, 135, 35);
 
                 row.Children.Add(combobox);
                

@@ -1,6 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using WpfApp1.FillMainform;
+using System;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 
 namespace WpfApp1
@@ -28,10 +32,12 @@ namespace WpfApp1
             var butt = new ButtonOfTestCase();
             var button1 = butt.TestCaseButton(countOfTestcase, MainBlock);
             var url = textbox.CreateUrl(countOfTestcase);
-            var combobox = item.CreateComboBox(countOfTestcase, 135.0, 30.0);
+            
             var navStackPanel = item.CreateRowTestCase(countOfTestcase, 120.0);
             var rowsTestcase = item.CreateRowTestCase(countOfTestcase, 401.0);
             var rowTestCase = item.CreateRowTestCase(countOfTestcase, 400.0);
+            var countOfRows = rowTestCase.Children.Count;
+            var combobox = item.CreateComboBox((short)countOfRows, 135.0, 30.0);
             var id = textbox.CreateId(countOfTestcase);
             rowTestCase.VerticalAlignment = VerticalAlignment.Center;
             var testcase = item.CreateTestCase(countOfTestcase);
@@ -62,6 +68,41 @@ namespace WpfApp1
         private void Exit_click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Execute_OnClick(object sender, RoutedEventArgs e)
+        {
+            var countOftestcase = MainBlock.Children.Count;
+            
+            for (int i = 0; i < countOftestcase; i++)
+            {
+                var rows = LogicalTreeHelper.FindLogicalNode(MainBlock, "rows" + i);
+                var countOfRow = ((StackPanel) rows).Children.Count;
+                for (int j = 0; j < countOfRow; j++)
+                {
+                    var currentAction = LogicalTreeHelper.FindLogicalNode(rows, "ComboBox" + j);
+                    if ((currentAction as ComboBox).SelectedItem == "Найти элемент")
+                    {
+                        var urlElement = LogicalTreeHelper.FindLogicalNode(MainBlock, "url" + i);
+
+                        var urlContent = (urlElement as TextBox)?.Text;
+
+                        var idElement = LogicalTreeHelper.FindLogicalNode(MainBlock, "id" + i);
+
+                        var idContent = (idElement as TextBox)?.Text;
+
+                        var chrome = new ChromeDriver();
+
+                        chrome.Navigate().GoToUrl(urlContent);
+
+                        var query = chrome.FindElement(By.Id(idContent));
+                        query.SendKeys("Cheese");
+                        query.Submit();
+
+                    }
+
+                }
+            }
         }
     }
 }
