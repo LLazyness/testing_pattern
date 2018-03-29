@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -6,6 +7,7 @@ namespace WpfApp1.FillMainform
 {
     public class StackPanelElement
     {
+        readonly BrushConverter _bc = new BrushConverter();
         public short CountOfRows { get; }
         public StackPanel GetRowTestCase { get; } = new StackPanel();
 
@@ -13,6 +15,7 @@ namespace WpfApp1.FillMainform
         {
             CountOfRows = count;
             GetRowTestCase.MinWidth = width;
+            GetRowTestCase.MinHeight = 10;
 
             if (width == 400.0)
             {
@@ -22,17 +25,17 @@ namespace WpfApp1.FillMainform
                 GetRowTestCase.Name = "row" + count;
                 //GetRowTestCase.Background=Brushes.Blue;
             }
-            else if (width == 401.0)
+            if (width == 401.0)
             {
                 GetRowTestCase.HorizontalAlignment = HorizontalAlignment.Center;
-                GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
+               // GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
                 GetRowTestCase.Orientation = Orientation.Vertical;
                 GetRowTestCase.Name = "rows" + count;
                 //GetRowTestCase.Background = Brushes.Green;
                 
             }
             
-            else
+            if (width == 120.0)
             {
                 GetRowTestCase.HorizontalAlignment = HorizontalAlignment.Center;
                 GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
@@ -44,5 +47,25 @@ namespace WpfApp1.FillMainform
             
 
         }
+
+        public StackPanel GetStackPanelOfProcessFindElement()
+        {
+            GetRowTestCase.Orientation = Orientation.Vertical;
+            GetRowTestCase.Name = "PanelFindElement";
+            GetRowTestCase.VerticalAlignment = VerticalAlignment.Bottom;
+            //GetRowTestCase.Background = (Brush) _bc.ConvertFrom("#44174f");
+            return GetRowTestCase;
+        }
+
+        public StackPanel GetStackPanelOfCheckBox()
+        {
+            GetRowTestCase.Orientation = Orientation.Vertical;
+            GetRowTestCase.Name = "CheckBoxpanel";
+            GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
+            GetRowTestCase.HorizontalAlignment = HorizontalAlignment.Left;
+            //GetRowTestCase.Background = (Brush) _bc.ConvertFrom("#44174f");
+            return GetRowTestCase;
+        }
+
     }
 }

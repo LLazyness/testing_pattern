@@ -13,6 +13,7 @@ namespace WpfApp1.FillMainform
             GetTextBox.Name = "TextBox" + count;
             GetTextBox.Height = height;
             GetTextBox.Margin = new Thickness(5,5,5,5);
+            GetTextBox.VerticalAlignment = VerticalAlignment.Center;
             GetTextBox.FontSize = 14;
         }
     }

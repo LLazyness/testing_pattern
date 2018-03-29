@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         
-        Title="MainWindow" Height="auto" Width="1023.922">
+        Title="Testing pattern" Height="auto" Width="1023.922">
 
     <Grid>
         <Grid.Background>

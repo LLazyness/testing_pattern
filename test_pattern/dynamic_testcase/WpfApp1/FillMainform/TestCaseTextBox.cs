@@ -13,7 +13,7 @@ namespace WpfApp1.FillMainform
             {
                 Width = 80,
                 Height = 30,
-                Name = "url" + count
+                Name = "url"
             };
             // url.Margin = new System.Windows.Thickness(0, 5, 5, 5);
             return url;
@@ -25,7 +25,7 @@ namespace WpfApp1.FillMainform
             {
                 Width = 80,
                 Height = 30,
-                Name = "id" + count
+                Name = "id"
             };
             //id.Margin = new System.Windows.Thickness(0, 5, 5, 5);
             return id;

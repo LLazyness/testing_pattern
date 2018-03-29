@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using WpfApp1.FillMainform;
 using System;
+using System.Windows.Media;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -18,14 +19,14 @@ namespace WpfApp1
         {
             InitializeComponent();
             
-
+            
 
         }
 
         private void Add_test_case_click(object sender, RoutedEventArgs e)
         {
             // ReSharper disable once ObjectCreationAsStatement
-            
+            MainPanel.MainBlockPanel = MainBlock;
             var countOfTestcase = (short)MainBlock.Children.Count; // кол-во тест кейсов
             ICreateForm item = new CreateForm();
             var textbox = new TestCaseTextBox();
@@ -61,7 +62,13 @@ namespace WpfApp1
             rowTestCase.Children.Add(combobox);
             rowsTestcase.Children.Add(rowTestCase);
             testcase.Children.Add(rowsTestcase);
-            MainBlock.Children.Add(testcase);
+            var border = new Border
+            {
+                Child = testcase,
+                BorderThickness = new Thickness(),
+                Background = Brushes.CadetBlue
+            };
+            MainBlock.Children.Add(border);
             
         }
 
@@ -96,8 +103,7 @@ namespace WpfApp1
                         chrome.Navigate().GoToUrl(urlContent);
 
                         var query = chrome.FindElement(By.Id(idContent));
-                        query.SendKeys("Cheese");
-                        query.Submit();
+                        
 
                     }
 

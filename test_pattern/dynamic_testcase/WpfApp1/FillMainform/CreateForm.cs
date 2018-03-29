@@ -114,9 +114,53 @@ namespace WpfApp1.FillMainform
                 label.Content = "Глобальный URL";
             if (name == "labelId")
                 label.Content = "Глобальный ID";
+            if (name == "Идентификатор")
+            {
+                label.Content = "Идентификатор";
+                label.Width = 100;
+            }
+            if (name == "checkbox")
+            {
+                label.Content = "Глобальный \n идентификатор";
+                label.Width = 100;
+                label.Height = 40;
+                
+            }
+
             label.HorizontalAlignment = HorizontalAlignment.Right;
             label.Foreground = (Brush)_bc.ConvertFrom("#ffffff");
             return label;
+        }
+
+        public CheckBox CreateCheckBox()
+        {
+            var checkbox = new CheckBox
+            {
+                Width = 20,
+                Height = 20,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Bottom
+            };
+            checkbox.Click += (sender, args) =>
+            {
+                var panelFindElement = ((StackPanel) ((StackPanel) checkbox.Parent).Parent).Children[1];
+
+                var textbox = ((StackPanel) panelFindElement).Children[1];
+
+                if (checkbox.IsChecked != null && (bool) checkbox.IsChecked)
+                {
+                    var testcase = ((StackPanel) ((StackPanel) ((StackPanel) checkbox.Parent).Parent).Parent).Parent;
+
+                    var globalUrl = LogicalTreeHelper.FindLogicalNode((StackPanel) testcase, "url");
+
+                    ((TextBox) textbox).Text = ((TextBox) globalUrl)?.Text;
+                }
+                else
+                {
+                    ((TextBox) textbox).Text = "";
+                }
+            };
+            return checkbox;
         }
     }
 }
