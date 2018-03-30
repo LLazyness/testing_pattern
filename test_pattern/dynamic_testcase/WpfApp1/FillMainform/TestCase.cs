@@ -25,6 +25,7 @@ namespace WpfApp1.FillMainform
             GetTestcase.Background =
                 new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/WpfApp1;component/picture/banner-landing-dark-blue.png")));
             GetTestcase.Name = "testcase" + countOfTestCase;
+            GetTestcase.Uid = countOfTestCase.ToString();
         }
         
     }

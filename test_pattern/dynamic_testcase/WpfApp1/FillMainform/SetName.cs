@@ -6,7 +6,7 @@ namespace WpfApp1.FillMainform
 
     public class SetName<T> where T : FrameworkElement
     {
-        public T set_id(T element, int id) 
+        public T Set_id(T element, int id) 
         {
             
             element.Name = "name" + (id + 1);

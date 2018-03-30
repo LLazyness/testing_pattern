@@ -31,11 +31,13 @@ namespace WpfApp1.FillMainform
         }
 
         public Border CreateBorder()
-        {  
-            var itemBorder = new Border();
-            
-            itemBorder.BorderBrush = Brushes.Red;
-            itemBorder.BorderThickness = new Thickness(2);
+        {
+            var itemBorder = new Border
+            {
+                BorderBrush = Brushes.Red,
+                BorderThickness = new Thickness(2)
+            };
+
             return itemBorder;
         }
         
@@ -52,7 +54,7 @@ namespace WpfApp1.FillMainform
 
 
             var dPanel = new SetName<DockPanel>();
-            itemDockPanel.Uid = dPanel.set_id(itemDockPanel, id).Uid;
+            itemDockPanel.Uid = dPanel.Set_id(itemDockPanel, id).Uid;
             
             return itemDockPanel;
         }
@@ -124,7 +126,8 @@ namespace WpfApp1.FillMainform
                 label.Content = "Глобальный \n идентификатор";
                 label.Width = 100;
                 label.Height = 40;
-                
+                label.VerticalAlignment = VerticalAlignment.Bottom;
+
             }
 
             label.HorizontalAlignment = HorizontalAlignment.Right;
@@ -136,10 +139,11 @@ namespace WpfApp1.FillMainform
         {
             var checkbox = new CheckBox
             {
-                Width = 20,
-                Height = 20,
+                Width = 30,
+                Height = 30,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Bottom
+                VerticalAlignment = VerticalAlignment.Bottom,
+                //Margin = new Thickness(0,0,0,0)
             };
             checkbox.Click += (sender, args) =>
             {
@@ -147,13 +151,17 @@ namespace WpfApp1.FillMainform
 
                 var textbox = ((StackPanel) panelFindElement).Children[1];
 
-                if (checkbox.IsChecked != null && (bool) checkbox.IsChecked)
+                if ( (bool) checkbox.IsChecked)
                 {
                     var testcase = ((StackPanel) ((StackPanel) ((StackPanel) checkbox.Parent).Parent).Parent).Parent;
 
-                    var globalUrl = LogicalTreeHelper.FindLogicalNode((StackPanel) testcase, "url");
+                    var testcaseUid = ((StackPanel)testcase).Uid;
 
-                    ((TextBox) textbox).Text = ((TextBox) globalUrl)?.Text;
+                    var globalId = LogicalTreeHelper.FindLogicalNode((StackPanel) testcase, "id"+testcaseUid);
+
+
+
+                    ((TextBox) textbox).Text = ((TextBox) globalId)?.Text;
                 }
                 else
                 {

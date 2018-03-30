@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace WpfApp1.FillMainform
 {
-    class TestCaseTextBox
+    internal class TestCaseTextBox
     {
         public TextBox CreateUrl(short count)
         {
@@ -13,7 +10,7 @@ namespace WpfApp1.FillMainform
             {
                 Width = 80,
                 Height = 30,
-                Name = "url"
+                Name = "url"+count
             };
             // url.Margin = new System.Windows.Thickness(0, 5, 5, 5);
             return url;
@@ -21,11 +18,11 @@ namespace WpfApp1.FillMainform
 
         public TextBox CreateId(short count)
         {
-            TextBox id = new TextBox
+            var id = new TextBox
             {
                 Width = 80,
                 Height = 30,
-                Name = "id"
+                Name = "id"+count
             };
             //id.Margin = new System.Windows.Thickness(0, 5, 5, 5);
             return id;

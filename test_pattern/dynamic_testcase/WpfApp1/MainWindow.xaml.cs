@@ -5,11 +5,11 @@ using System;
 using System.Windows.Media;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 
 
 namespace WpfApp1
 {
+    /// <inheritdoc cref="" />
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
@@ -29,6 +29,7 @@ namespace WpfApp1
             MainPanel.MainBlockPanel = MainBlock;
             var countOfTestcase = (short)MainBlock.Children.Count; // кол-во тест кейсов
             ICreateForm item = new CreateForm();
+            ButtonDelete del = new ButtonDelete();
             var textbox = new TestCaseTextBox();
             var butt = new ButtonOfTestCase();
             var button1 = butt.TestCaseButton(countOfTestcase, MainBlock);
@@ -62,11 +63,14 @@ namespace WpfApp1
             rowTestCase.Children.Add(combobox);
             rowsTestcase.Children.Add(rowTestCase);
             testcase.Children.Add(rowsTestcase);
+
+            testcase.Children.Add(del.DeleteTestCase(countOfTestcase));
             var border = new Border
             {
                 Child = testcase,
                 BorderThickness = new Thickness(),
-                Background = Brushes.CadetBlue
+                Background = Brushes.CadetBlue,
+                Name = "border"+countOfTestcase
             };
             MainBlock.Children.Add(border);
             
@@ -85,24 +89,27 @@ namespace WpfApp1
             {
                 var rows = LogicalTreeHelper.FindLogicalNode(MainBlock, "rows" + i);
                 var countOfRow = ((StackPanel) rows).Children.Count;
-                for (int j = 0; j < countOfRow; j++)
+                for (var j = 0; j < countOfRow; j++)
                 {
                     var currentAction = LogicalTreeHelper.FindLogicalNode(rows, "ComboBox" + j);
-                    if ((currentAction as ComboBox).SelectedItem == "Найти элемент")
+                    if ((currentAction as ComboBox)?.SelectedItem == "Найти элемент")
                     {
                         var urlElement = LogicalTreeHelper.FindLogicalNode(MainBlock, "url" + i);
 
                         var urlContent = (urlElement as TextBox)?.Text;
 
-                        var idElement = LogicalTreeHelper.FindLogicalNode(MainBlock, "id" + i);
+                        var idElement = LogicalTreeHelper.FindLogicalNode(rows, "id");
 
                         var idContent = (idElement as TextBox)?.Text;
 
                         var chrome = new ChromeDriver();
-
+                        if (String.IsNullOrEmpty(urlContent)) urlContent = "http://google.com";
                         chrome.Navigate().GoToUrl(urlContent);
-
+                        if ( String.IsNullOrEmpty(idContent)) idContent = "lst-ib";
+                       
                         var query = chrome.FindElement(By.Id(idContent));
+                        query.SendKeys("Фуряева Марина");
+                        query.Submit();
                         
 
                     }

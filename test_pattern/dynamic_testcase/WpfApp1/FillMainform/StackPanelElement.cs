@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -63,6 +62,7 @@ namespace WpfApp1.FillMainform
             GetRowTestCase.Name = "CheckBoxpanel";
             GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
             GetRowTestCase.HorizontalAlignment = HorizontalAlignment.Left;
+            //GetRowTestCase.MinHeight = 30;
             //GetRowTestCase.Background = (Brush) _bc.ConvertFrom("#44174f");
             return GetRowTestCase;
         }

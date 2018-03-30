@@ -34,11 +34,11 @@ namespace WpfApp1.FillMainform
                 ICreateForm ob = new CreateForm();
                 var row = GetComboBox.Parent;
                 var countOfRowChild = ((StackPanel)row).Children.Count; 
-                for (var i=0; i<countOfRowChild; i++)
+                for (var i= countOfRowChild-1; i>=0; i--)
                 {
-                    if (i != 0)
-                        ((StackPanel) row)?.Children.Remove(((StackPanel) row)?.Children[i]);
-
+                    if (i == 0) continue;
+                   
+                    ((StackPanel) row)?.Children.Remove(((StackPanel) row)?.Children[i]);
                 }
                 switch ((string) GetComboBox.SelectedItem)
                 {
@@ -62,7 +62,7 @@ namespace WpfApp1.FillMainform
 
                         processFindElementPanel.Children.Add(textbox);
 
-                        var checkBoxPanel = new StackPanelElement(count, 10).GetStackPanelOfCheckBox();
+                        var checkBoxPanel = new StackPanelElement(count, 30).GetStackPanelOfCheckBox();
 
                         checkBoxPanel.Children.Add(val.CreateLabel(count, "checkbox"));
 
@@ -71,12 +71,7 @@ namespace WpfApp1.FillMainform
                         ((StackPanel) row)?.Children.Add(processFindElementPanel);
 
                         ((StackPanel)row)?.Children.Add(checkBoxPanel);
-
-                        var testcase = ((StackPanel)((StackPanel)row).Parent).Parent;
-
-                        var nameOfRows = ((StackPanel)testcase).Name;
-
-                        //MessageBox.Show(nameOfRows);
+                        
                         
                         break;
 

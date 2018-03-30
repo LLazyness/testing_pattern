@@ -5,12 +5,13 @@ namespace WpfApp1.FillMainform
 {
     internal class TextBoxElement
     {
+        
         public TextBox GetTextBox { get; } = new TextBox();
 
         public TextBoxElement(short count, double width, double height)
         {
             GetTextBox.Width = width;
-            GetTextBox.Name = "TextBox" + count;
+            GetTextBox.Name = "id";
             GetTextBox.Height = height;
             GetTextBox.Margin = new Thickness(5,5,5,5);
             GetTextBox.VerticalAlignment = VerticalAlignment.Center;
