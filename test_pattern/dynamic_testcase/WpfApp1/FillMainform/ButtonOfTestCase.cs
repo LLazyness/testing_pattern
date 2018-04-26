@@ -1,13 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WpfApp1.StackPanels;
 
 namespace WpfApp1.FillMainform
 {
     internal class ButtonOfTestCase: FrameworkElement
     {
         
-        public Button TestCaseButton(short count, StackPanel panel)
+        public Button TestCaseButton(int count)
         {
             var bc = new BrushConverter();
 
@@ -22,23 +23,13 @@ namespace WpfApp1.FillMainform
             };
             button.Click += (sender, args) =>
             {
-                ICreateForm item = new CreateForm();
-
-                ICreateForm ob = new CreateForm();
-
-                var obj = LogicalTreeHelper.FindLogicalNode(panel, "rows" + count);
+                var obj = LogicalTreeHelper.FindLogicalNode(MainPanel.MainBlockPanel, "rows" + count);
 
                 if (obj == null) return;
-
-                var rowsCount = (short)((StackPanel) obj).Children.Count;
-
-                var row = item.CreateRowTestCase(rowsCount, 400.0);
-
-                var combobox = ob.CreateComboBox(rowsCount, 135, 35);
-
-                row.Children.Add(combobox);
-               
-                (obj as StackPanel).Children.Add(row); //добавляем новый row
+                
+                var row = new Row().CreateStackPanel();
+                
+                (obj as StackPanel)?.Children.Add(row); //добавляем новый row
             };
             return button;
         }

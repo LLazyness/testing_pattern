@@ -22,6 +22,7 @@ namespace WpfApp1.FillMainform
             GetComboBox.Items.Add("Выбрать действие");
             GetComboBox.Items.Add("Найти элемент");
             GetComboBox.Items.Add("Сравнить элемент");
+            GetComboBox.Items.Add("Ввести значение в элементе");
             GetComboBox.SelectedItem = GetComboBox.Items.GetItemAt(0);
             
            
@@ -29,6 +30,9 @@ namespace WpfApp1.FillMainform
             GetComboBox.HorizontalContentAlignment = HorizontalAlignment.Center;
             GetComboBox.Margin = new Thickness(5, 0, 5, 5);
             GetComboBox.Background = (Brush)_bc.ConvertFrom("#fcfcfc");
+
+            var checkBoxPanel = new StackPanelElement(count, 30).GetStackPanelOfCheckBox();
+
             GetComboBox.SelectionChanged += (sender, args) =>
             {
                 ICreateForm ob = new CreateForm();
@@ -44,41 +48,52 @@ namespace WpfApp1.FillMainform
                 {
                     case "Найти элемент":
 
-                        var check = LogicalTreeHelper.FindLogicalNode(row ?? throw new InvalidOperationException(), "TextBox" + count);
-
-                        var val = new CreateForm();
-
-                        if (check != null) return;
-
-                        var label = ob.CreateLabel(count, "Идентификатор");
-
-                        var textbox = new TextBoxElement(count, 80.0, 30.0).GetTextBox;
-
-                        var processFindElementPanel = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
-
+                        if (LogicalTreeHelper.FindLogicalNode(row ?? throw new InvalidOperationException(), "TextBox" + count) != null) return;
                         
+                        var processFindElementPanel = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
+                        
+                        processFindElementPanel.Children.Add(ob.CreateLabel(count, "Идентификатор"));
 
-                        processFindElementPanel.Children.Add(label);
+                        processFindElementPanel.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+                        
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "checkbox"));
 
-                        processFindElementPanel.Children.Add(textbox);
-
-                        var checkBoxPanel = new StackPanelElement(count, 30).GetStackPanelOfCheckBox();
-
-                        checkBoxPanel.Children.Add(val.CreateLabel(count, "checkbox"));
-
-                        checkBoxPanel.Children.Add(val.CreateCheckBox());
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
 
                         ((StackPanel) row)?.Children.Add(processFindElementPanel);
 
                         ((StackPanel)row)?.Children.Add(checkBoxPanel);
                         
+                        break;
+
+                    case "Ввести значение в элементе":
+                        
+                        GetComboBox.Width= 190;
+
+                        var processInsertValueToElement = new StackPanelElement(count, 10).GetProcessInsertValueToTextBox();
+
+                        processInsertValueToElement.Children.Add(ob.CreateLabel(count, "Идентификатор"));
+
+                        processInsertValueToElement.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+                        
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "checkbox"));
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
+
+                        var textBoxPanel = new StackPanelElement(count, 10).GetTextBoxPanel();
+
+                        textBoxPanel.Children.Add(ob.CreateLabel(count, "insertedValue"));
+
+                        textBoxPanel.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        ((StackPanel)row)?.Children.Add(processInsertValueToElement);
+
+                        ((StackPanel)row)?.Children.Add(checkBoxPanel);
+
+                        ((StackPanel)row)?.Children.Add(textBoxPanel);
                         
                         break;
-
-                    case "Сравнить элемент":
-
-                        break;
-
+                        
                     default:
 
                         MessageBox.Show("notfind");

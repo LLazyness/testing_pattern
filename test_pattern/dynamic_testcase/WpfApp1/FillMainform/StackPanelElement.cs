@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Orientation = System.Windows.Controls.Orientation;
 
 namespace WpfApp1.FillMainform
 {
@@ -67,5 +68,24 @@ namespace WpfApp1.FillMainform
             return GetRowTestCase;
         }
 
+        public StackPanel GetProcessInsertValueToTextBox()
+        {
+            GetRowTestCase.Orientation = Orientation.Vertical;
+            GetRowTestCase.Name = "GetProcessInsertValueToTextBoxPanel";
+            GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
+            GetRowTestCase.HorizontalAlignment = HorizontalAlignment.Left;
+            return GetRowTestCase;
+        }
+
+        public StackPanel GetTextBoxPanel()
+        {
+            GetRowTestCase.Orientation = Orientation.Vertical;
+            GetRowTestCase.Name = "TextBoxPanel";
+            GetRowTestCase.VerticalAlignment = VerticalAlignment.Top;
+            GetRowTestCase.HorizontalAlignment = HorizontalAlignment.Left;
+            return GetRowTestCase;
+        }
+
+        
     }
 }

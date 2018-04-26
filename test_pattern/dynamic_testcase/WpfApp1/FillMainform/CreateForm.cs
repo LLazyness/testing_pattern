@@ -78,12 +78,7 @@ namespace WpfApp1.FillMainform
             return stackpanel;
         }
 
-        public StackPanel CreateTestCase(short countOftestCase)
-        {
-            TestCase testCase = new TestCase(countOftestCase);
-            var panel = testCase.GetTestcase;
-            return panel;
-        }
+        
         public StackPanel CreateRowTestCase(short countOfRows, double width)
         {
             var row = new StackPanelElement(countOfRows, width);
@@ -110,24 +105,29 @@ namespace WpfApp1.FillMainform
             {
                 Width = 120,
                 Height = 25,
-                Name = name + count
             };
-            if (name == "labelUrl")
-                label.Content = "Глобальный URL";
-            if (name == "labelId")
-                label.Content = "Глобальный ID";
-            if (name == "Идентификатор")
+            switch (name)
             {
-                label.Content = "Идентификатор";
-                label.Width = 100;
-            }
-            if (name == "checkbox")
-            {
-                label.Content = "Глобальный \n идентификатор";
-                label.Width = 100;
-                label.Height = 40;
-                label.VerticalAlignment = VerticalAlignment.Bottom;
-
+                case "labelUrl":
+                    label.Content = "Глобальный URL";
+                    break;
+                case "labelId":
+                    label.Content = "Глобальный ID";
+                    break;
+                case "Идентификатор":
+                    label.Content = "Идентификатор";
+                    label.Width = 100;
+                    break;
+                case "insertedValue":
+                    label.Content = "Вводимое значение";
+                    label.Width = 100;
+                    break;
+                case "checkbox":
+                    label.Content = "Глобальный \n идентификатор";
+                    label.Width = 100;
+                    label.Height = 40;
+                    label.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
             }
 
             label.HorizontalAlignment = HorizontalAlignment.Right;

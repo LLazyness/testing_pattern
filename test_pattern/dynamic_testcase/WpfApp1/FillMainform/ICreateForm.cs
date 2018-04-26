@@ -9,7 +9,7 @@ namespace WpfApp1.FillMainform
         DockPanel CreateDocPanel(DockPanel mainDockPanel, int id);
         Border CreateBorder();
         StackPanel CreateStackPanel();
-        StackPanel CreateTestCase(short countOftestCase);
+        
         StackPanel CreateRowTestCase(short countOfRows, double width);
         Button CreateButton(short countOfButton);
         Label CreateLabel (short count, string label);
