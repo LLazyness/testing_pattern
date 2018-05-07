@@ -81,11 +81,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="StackPanels\ErrorPanel.cs" />
     <Compile Include="StackPanels\Id.cs" />
+    <Compile Include="StackPanels\IResult.cs" />
     <Compile Include="StackPanels\IStackPanel.cs" />
     <Compile Include="StackPanels\Nav.cs" />
     <Compile Include="StackPanels\Row.cs" />
     <Compile Include="StackPanels\Rows.cs" />
+    <Compile Include="StackPanels\SuccessPanel.cs" />
     <Compile Include="StackPanels\TestCase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +188,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="picture\cancel %281%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture\258341.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture\icons8-ok-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="picture\icons8-cancel-40.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets')" />

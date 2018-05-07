@@ -64,13 +64,43 @@ namespace WpfApp1
 
                         var chrome = new ChromeDriver();
                         if (String.IsNullOrEmpty(urlContent)) urlContent = "http://google.com";
-                        chrome.Navigate().GoToUrl(urlContent);
+                        try
+                        {
+                            chrome.Navigate().GoToUrl(urlContent);
+                        }
+                        catch
+                        {
+                            
+                            chrome.Quit();
+
+                        }
+
                         if ( String.IsNullOrEmpty(idContent)) idContent = "lst-ib";
-                       
-                        var query = chrome.FindElement(By.Id(idContent));
-                        query.SendKeys("Фуряева Марина");
-                        query.Submit();
-                        
+                        try
+                        {
+                            var query = chrome.FindElement(By.Id(idContent));
+                            query.SendKeys("Фуряева Марина");
+                            query.Submit();
+                            chrome.Quit();
+                            var currentRow = LogicalTreeHelper.FindLogicalNode(rows, "row" + j);
+                            int countrow = (currentRow as StackPanel).Children.Count;
+                            StackPanel currentResult = (StackPanel)(currentRow as StackPanel).Children[countrow];
+                            if (String.IsNullOrEmpty(currentResult.Name))
+                            {
+                                IResult successResult = new SuccessPanel();
+                                var successPanel = successResult.CreateStackPanel();
+                                (currentRow as StackPanel)?.Children.Add(successPanel);
+                            }
+                        }
+                        catch
+                        {
+                            chrome.Quit();
+                            var currentRow = LogicalTreeHelper.FindLogicalNode(rows, "row" + j);
+                            IResult errorResult = new ErrorPanel();
+                            var errorPanel = errorResult.CreateStackPanel();
+                            (currentRow as StackPanel)?.Children.Add(errorPanel);
+                        }
+
 
                     }
 
