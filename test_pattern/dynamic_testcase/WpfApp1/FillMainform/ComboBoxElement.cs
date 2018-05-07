@@ -31,18 +31,19 @@ namespace WpfApp1.FillMainform
             GetComboBox.Margin = new Thickness(5, 0, 5, 5);
             GetComboBox.Background = (Brush)_bc.ConvertFrom("#fcfcfc");
 
-            var checkBoxPanel = new StackPanelElement(count, 30).GetStackPanelOfCheckBox();
+            
 
             GetComboBox.SelectionChanged += (sender, args) =>
             {
+                var checkBoxPanel = new StackPanelElement(count, 30).GetStackPanelOfCheckBox();
                 ICreateForm ob = new CreateForm();
                 var row = GetComboBox.Parent;
                 var countOfRowChild = ((StackPanel)row).Children.Count; 
                 for (var i= countOfRowChild-1; i>=0; i--)
                 {
                     if (i == 0) continue;
-                   
-                    ((StackPanel) row)?.Children.Remove(((StackPanel) row)?.Children[i]);
+                    
+                     ((StackPanel) row)?.Children.Remove(((StackPanel) row)?.Children[i]);
                 }
                 switch ((string) GetComboBox.SelectedItem)
                 {

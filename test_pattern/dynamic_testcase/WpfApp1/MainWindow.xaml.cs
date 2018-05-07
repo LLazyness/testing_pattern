@@ -19,61 +19,21 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            
-            
-
         }
 
         private void Add_test_case_click(object sender, RoutedEventArgs e)
         {
-            // ReSharper disable once ObjectCreationAsStatement
             MainPanel.MainBlockPanel = MainBlock;
-            var countOfTestcase = (short)MainBlock.Children.Count; // кол-во тест кейсов
-            ICreateForm item = new CreateForm();
-            ButtonDelete del = new ButtonDelete();
-            var textbox = new TestCaseTextBox();
-            var butt = new ButtonOfTestCase();
-            //var button1 = butt.TestCaseButton(countOfTestcase, MainBlock);
-            var url = textbox.CreateUrl(countOfTestcase);
-            
-            var navStackPanel = item.CreateRowTestCase(countOfTestcase, 120.0);
-            //var rowsTestcase = item.CreateRowTestCase(countOfTestcase, 401.0);
-            var rowTestCase = item.CreateRowTestCase(countOfTestcase, 400.0);
-            var countOfRows = rowTestCase.Children.Count;
-            var combobox = item.CreateComboBox((short)countOfRows, 135.0, 30.0);
-            var id = textbox.CreateId(countOfTestcase);
-            rowTestCase.VerticalAlignment = VerticalAlignment.Center;
             var testcase = new TestCase().CreateStackPanel();
-            
-
-
-
-            /* navStackPanel.Orientation = Orientation.Vertical;
-             navStackPanel.VerticalAlignment = VerticalAlignment.Center;
-             navStackPanel.Margin = new Thickness(10, 10, 10, 10);
-             navStackPanel.Children.Add(button1);
-             navStackPanel.Children.Add(labelUrl);
-             navStackPanel.Children.Add(url);
-             navStackPanel.Children.Add(labelId);
-             navStackPanel.Children.Add(id);
-             navStackPanel.Name = "nav";*/
-            //testcase.Children.Add(navStackPanel);
-            
-
-            rowTestCase.Children.Add(combobox);
-            //rowsTestcase.Children.Add(rowTestCase);
-            //testcase.Children.Add(rowsTestcase);
-
-            //testcase.Children.Add(del.DeleteTestCase(countOfTestcase));
             var border = new Border
             {
                 Child = testcase,
                 BorderThickness = new Thickness(),
                 Background = Brushes.CadetBlue,
-                Name = "border"+ testcase.Uid
+                Name = "border"+ testcase.Uid,
+                HorizontalAlignment = HorizontalAlignment.Left
             };
             MainBlock.Children.Add(border);
-            
         }
 
         private void Exit_click(object sender, RoutedEventArgs e)

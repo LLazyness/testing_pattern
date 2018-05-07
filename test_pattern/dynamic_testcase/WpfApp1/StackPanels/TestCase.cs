@@ -24,7 +24,7 @@ namespace WpfApp1.StackPanels
             _testcase = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Right,
+                HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
                 MinWidth = 1024,
                 Margin = new Thickness(5, 5, 5, 5),

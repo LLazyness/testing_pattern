@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         
-        Title="Testing pattern" Height="auto" Width="1023.922">
+        Title="Testing pattern" Height="1080" Width="1920">
 
     <Grid>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="picture/WVoQJ6.jpg"
                         AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
-        <ScrollViewer Height="auto">
+        <ScrollViewer Height="auto" Margin="335,0,-335,0">
 
-            <StackPanel x:Name="MainBlock" MinWidth="1024" HorizontalAlignment="Center" x:FieldModifier="public">
+            <StackPanel x:Name="MainBlock" MinWidth="1024" HorizontalAlignment="Left" Margin="10 10 10 10" x:FieldModifier="public" RenderTransformOrigin="-0.358,0.46">
                
 
             </StackPanel>
