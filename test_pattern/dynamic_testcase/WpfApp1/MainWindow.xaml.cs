@@ -54,6 +54,8 @@ namespace WpfApp1
                     var currentAction = LogicalTreeHelper.FindLogicalNode(rows, "ComboBox" + j);
                     if ((currentAction as ComboBox)?.SelectedItem == "Найти элемент")
                     {
+                        IResult successResult = new SuccessPanel();
+
                         var urlElement = LogicalTreeHelper.FindLogicalNode(MainBlock, "url" + i);
 
                         var urlContent = (urlElement as TextBox)?.Text;
@@ -63,7 +65,15 @@ namespace WpfApp1
                         var idContent = (idElement as TextBox)?.Text;
 
                         var chrome = new ChromeDriver();
+
+                        StackPanel currentRow = (StackPanel)LogicalTreeHelper.FindLogicalNode(rows, "row" + j);
+                        int countrow = (currentRow as StackPanel).Children.Count;
+
+                        StackPanel currentStatus = (StackPanel)currentRow.Children[countrow - 1];
+                        if (currentStatus.Name == "Success" || currentStatus.Name == "Error")
+                            currentRow.Children.RemoveAt(countrow - 1);
                         if (String.IsNullOrEmpty(urlContent)) urlContent = "http://google.com";
+                        if (String.IsNullOrEmpty(idContent)) idContent = "lst-ib";
                         try
                         {
                             chrome.Navigate().GoToUrl(urlContent);
@@ -75,27 +85,20 @@ namespace WpfApp1
 
                         }
 
-                        if ( String.IsNullOrEmpty(idContent)) idContent = "lst-ib";
+                        
                         try
                         {
                             var query = chrome.FindElement(By.Id(idContent));
                             query.SendKeys("Фуряева Марина");
                             query.Submit();
                             chrome.Quit();
-                            var currentRow = LogicalTreeHelper.FindLogicalNode(rows, "row" + j);
-                            int countrow = (currentRow as StackPanel).Children.Count;
-                            StackPanel currentResult = (StackPanel)(currentRow as StackPanel).Children[countrow];
-                            if (String.IsNullOrEmpty(currentResult.Name))
-                            {
-                                IResult successResult = new SuccessPanel();
-                                var successPanel = successResult.CreateStackPanel();
-                                (currentRow as StackPanel)?.Children.Add(successPanel);
-                            }
+                            var successPanel = successResult.CreateStackPanel();
+                            (currentRow as StackPanel)?.Children.Add(successPanel);
                         }
                         catch
                         {
                             chrome.Quit();
-                            var currentRow = LogicalTreeHelper.FindLogicalNode(rows, "row" + j);
+                           
                             IResult errorResult = new ErrorPanel();
                             var errorPanel = errorResult.CreateStackPanel();
                             (currentRow as StackPanel)?.Children.Add(errorPanel);

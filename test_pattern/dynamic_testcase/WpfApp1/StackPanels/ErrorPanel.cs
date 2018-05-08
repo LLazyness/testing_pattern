@@ -18,7 +18,7 @@ namespace WpfApp1.StackPanels
             _errorPanel.Height = 40;
             _errorPanel.Background = new ImageBrush(new BitmapImage(
                 new Uri("pack://application:,,,/WpfApp1;component/picture/icons8-cancel-40.png")));
-            
+            _errorPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             return _errorPanel;
         }
 

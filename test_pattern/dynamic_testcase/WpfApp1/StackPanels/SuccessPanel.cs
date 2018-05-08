@@ -12,9 +12,10 @@ namespace WpfApp1.StackPanels
         {
             _successPanel.Width = 40;
             _successPanel.Height = 40;
+            _successPanel.Name = "Success";
             _successPanel.Background = new ImageBrush(new BitmapImage(
                 new Uri("pack://application:,,,/WpfApp1;component/picture/icons8-ok-40.png")));
-            //AddChildren();
+            _successPanel.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             return _successPanel;
         }
 
