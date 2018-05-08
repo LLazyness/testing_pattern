@@ -113,7 +113,10 @@ namespace WpfApp1.FillMainform
                         ((StackPanel)row)?.Children.Add(checkBoxPanel);
 
                         break;
-                        
+                    case "Сравнить значение \n в определенном элементе":
+
+                        break;
+
                     default:
 
                         MessageBox.Show("notfind");
