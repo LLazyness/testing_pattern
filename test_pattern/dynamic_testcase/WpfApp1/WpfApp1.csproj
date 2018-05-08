@@ -81,6 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FillMainform\TextBoxGoToUrl.cs" />
     <Compile Include="StackPanels\ErrorPanel.cs" />
     <Compile Include="StackPanels\Id.cs" />
     <Compile Include="StackPanels\IResult.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="StackPanels\Rows.cs" />
     <Compile Include="StackPanels\SuccessPanel.cs" />
     <Compile Include="StackPanels\TestCase.cs" />
+    <Compile Include="StackPanels\Url.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

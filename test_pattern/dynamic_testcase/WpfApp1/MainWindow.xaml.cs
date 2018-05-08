@@ -67,13 +67,13 @@ namespace WpfApp1
                         var chrome = new ChromeDriver();
 
                         StackPanel currentRow = (StackPanel)LogicalTreeHelper.FindLogicalNode(rows, "row" + j);
-                        int countrow = (currentRow as StackPanel).Children.Count;
+                        var countrow = currentRow.Children.Count;
 
                         StackPanel currentStatus = (StackPanel)currentRow.Children[countrow - 1];
                         if (currentStatus.Name == "Success" || currentStatus.Name == "Error")
                             currentRow.Children.RemoveAt(countrow - 1);
-                        if (String.IsNullOrEmpty(urlContent)) urlContent = "http://google.com";
-                        if (String.IsNullOrEmpty(idContent)) idContent = "lst-ib";
+                        if (string.IsNullOrEmpty(urlContent)) urlContent = "http://google.com";
+                        if (string.IsNullOrEmpty(idContent)) idContent = "lst-ib";
                         try
                         {
                             chrome.Navigate().GoToUrl(urlContent);
@@ -93,15 +93,14 @@ namespace WpfApp1
                             query.Submit();
                             chrome.Quit();
                             var successPanel = successResult.CreateStackPanel();
-                            (currentRow as StackPanel)?.Children.Add(successPanel);
+                            currentRow.Children.Add(successPanel);
                         }
                         catch
                         {
                             chrome.Quit();
-                           
                             IResult errorResult = new ErrorPanel();
                             var errorPanel = errorResult.CreateStackPanel();
-                            (currentRow as StackPanel)?.Children.Add(errorPanel);
+                            currentRow.Children.Add(errorPanel);
                         }
 
 

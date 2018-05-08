@@ -128,6 +128,12 @@ namespace WpfApp1.FillMainform
                     label.Height = 40;
                     label.VerticalAlignment = VerticalAlignment.Bottom;
                     break;
+                case "URL":
+                    label.Content = "URL";
+                    label.Width = 50;
+                    label.Height = 40;
+                    label.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
             }
 
             label.HorizontalAlignment = HorizontalAlignment.Right;

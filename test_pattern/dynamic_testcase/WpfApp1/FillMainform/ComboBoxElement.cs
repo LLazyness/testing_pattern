@@ -23,6 +23,8 @@ namespace WpfApp1.FillMainform
             GetComboBox.Items.Add("Найти элемент");
             GetComboBox.Items.Add("Сравнить элемент");
             GetComboBox.Items.Add("Ввести значение в элементе");
+            GetComboBox.Items.Add("Перейти по ссылке");
+            GetComboBox.Items.Add("Сравнить значение \n в определенном элементе");
             GetComboBox.SelectedItem = GetComboBox.Items.GetItemAt(0);
             
            
@@ -81,6 +83,8 @@ namespace WpfApp1.FillMainform
 
                         checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
 
+                        checkBoxPanel.VerticalAlignment = VerticalAlignment.Bottom;
+
                         var textBoxPanel = new StackPanelElement(count, 10).GetTextBoxPanel();
 
                         textBoxPanel.Children.Add(ob.CreateLabel(count, "insertedValue"));
@@ -93,6 +97,21 @@ namespace WpfApp1.FillMainform
 
                         ((StackPanel)row)?.Children.Add(textBoxPanel);
                         
+                        break;
+                    case "Перейти по ссылке":
+
+                        GetComboBox.Width = 190;
+                        
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "URL"));
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
+                        
+                        var urlTextBox = new TextBoxGoToUrl();
+
+                        ((StackPanel)row)?.Children.Add(urlTextBox.CreateUrlTextBox());
+
+                        ((StackPanel)row)?.Children.Add(checkBoxPanel);
+
                         break;
                         
                     default:
