@@ -12,7 +12,7 @@
             <ImageBrush Stretch="Fill" ImageSource="picture/WVoQJ6.jpg"
                         AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
-        <ScrollViewer Height="auto" Margin="335,0,-335,0">
+        <ScrollViewer Height="auto" Margin="330,0,-330,0">
 
             <StackPanel x:Name="MainBlock" MinWidth="1024" HorizontalAlignment="Left" Margin="10 10 10 10" x:FieldModifier="public" RenderTransformOrigin="-0.358,0.46">
                

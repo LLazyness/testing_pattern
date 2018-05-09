@@ -81,6 +81,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FillMainform\ComboBox.cs" />
+    <Compile Include="FillMainform\ComboBoxAttrCss.cs" />
     <Compile Include="FillMainform\TextBoxGoToUrl.cs" />
     <Compile Include="StackPanels\ErrorPanel.cs" />
     <Compile Include="StackPanels\Id.cs" />

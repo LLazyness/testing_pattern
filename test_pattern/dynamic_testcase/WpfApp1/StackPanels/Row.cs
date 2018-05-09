@@ -22,7 +22,7 @@ namespace WpfApp1.StackPanels
 
         public void AddChildren()
         {
-            var combobox = new ComboBoxElement((short)GetId(), 135.0, 30.0).GetComboBox;
+            var combobox = new ComboBoxElement((short)GetId(), 200.0, 40.0).GetComboBox;
             _row.Children.Add(combobox);
         }
     }

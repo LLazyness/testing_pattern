@@ -120,7 +120,7 @@ namespace WpfApp1.FillMainform
                     break;
                 case "insertedValue":
                     label.Content = "Вводимое значение";
-                    label.Width = 100;
+                    label.Width = 120;
                     break;
                 case "checkbox":
                     label.Content = "Глобальный \n идентификатор";
@@ -133,6 +133,23 @@ namespace WpfApp1.FillMainform
                     label.Width = 50;
                     label.Height = 40;
                     label.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
+                case "Сравнить":
+                    label.Content = "Сравниваемое \n значение";
+                    label.Width = 100;
+                    label.Height = 40;
+                    label.VerticalAlignment = VerticalAlignment.Bottom;
+                    break;
+                case "click":
+                    label.Content = "Идентификатор\n элемента";
+                    label.Width = 120;
+                    label.Height = 40;
+                    break;
+
+                case "checkURL":
+                    label.Content = "Сравниваемый\n адрес";
+                    label.Height = 40;
+
                     break;
             }
 

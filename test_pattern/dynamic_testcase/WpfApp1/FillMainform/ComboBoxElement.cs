@@ -24,7 +24,11 @@ namespace WpfApp1.FillMainform
             GetComboBox.Items.Add("Сравнить элемент");
             GetComboBox.Items.Add("Ввести значение в элементе");
             GetComboBox.Items.Add("Перейти по ссылке");
-            GetComboBox.Items.Add("Сравнить значение \n в определенном элементе");
+            GetComboBox.Items.Add("Сравнить значение  в \nопределенном элементе");
+            GetComboBox.Items.Add("Выполнить клик \n по элементу");
+            GetComboBox.Items.Add("Сравнить значение \n атрибута у элемента");
+            GetComboBox.Items.Add("Получить значение \n атрибута css");
+            GetComboBox.Items.Add("Проверка URL \n страницы");
             GetComboBox.SelectedItem = GetComboBox.Items.GetItemAt(0);
             
            
@@ -38,6 +42,7 @@ namespace WpfApp1.FillMainform
             GetComboBox.SelectionChanged += (sender, args) =>
             {
                 var checkBoxPanel = new StackPanelElement(count, 30).GetStackPanelOfCheckBox();
+                checkBoxPanel.VerticalAlignment = VerticalAlignment.Bottom;
                 ICreateForm ob = new CreateForm();
                 var row = GetComboBox.Parent;
                 var countOfRowChild = ((StackPanel)row).Children.Count; 
@@ -91,6 +96,7 @@ namespace WpfApp1.FillMainform
 
                         textBoxPanel.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
 
+
                         ((StackPanel)row)?.Children.Add(processInsertValueToElement);
 
                         ((StackPanel)row)?.Children.Add(checkBoxPanel);
@@ -113,10 +119,113 @@ namespace WpfApp1.FillMainform
                         ((StackPanel)row)?.Children.Add(checkBoxPanel);
 
                         break;
-                    case "Сравнить значение \n в определенном элементе":
+                    case "Сравнить значение  в \nопределенном элементе":
+                        var processFindElementPanel1 = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
+
+                        processFindElementPanel1.Children.Add(ob.CreateLabel(count, "Идентификатор"));
+
+                        processFindElementPanel1.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "checkbox"));
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
+
+                        var processFindElementPanel2 = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
+
+                        processFindElementPanel2.Children.Add(ob.CreateLabel(count, "Сравнить"));
+
+                        processFindElementPanel2.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        ((StackPanel)row)?.Children.Add(processFindElementPanel1);
+
+                        ((StackPanel)row)?.Children.Add(checkBoxPanel);
+
+                        ((StackPanel)row)?.Children.Add(processFindElementPanel2);
+
+                        
+                        break;
+                    case "Выполнить клик \n по элементу":
+                        var processFindElementPanel3 = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
+
+                        processFindElementPanel3.Children.Add(ob.CreateLabel(count, "Идентификатор"));
+
+                        processFindElementPanel3.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "checkbox"));
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
+
+                        ((StackPanel)row)?.Children.Add(processFindElementPanel3);
+
+                        ((StackPanel)row)?.Children.Add(checkBoxPanel);
 
                         break;
+                    case "Сравнить значение \n атрибута у элемента":
+                        var processFindElementPanel4 = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
 
+                        processFindElementPanel4.Children.Add(ob.CreateLabel(count, "Идентификатор"));
+
+                        processFindElementPanel4.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "checkbox"));
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
+
+                        ComboBoxElementSe obj = new ComboBoxElementSe();
+
+
+                        var texb = new StackPanelElement(count, 10).GetProcessInsertValueToTextBox();
+
+                        texb.Children.Add(ob.CreateLabel(count, "Сравнить"));
+
+                        texb.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        ((StackPanel)row)?.Children.Add(processFindElementPanel4);
+
+                        ((StackPanel)row)?.Children.Add(checkBoxPanel);
+
+                        ((StackPanel)row)?.Children.Add(obj.cmb);
+
+                        ((StackPanel)row)?.Children.Add(texb);
+                        break;
+                    case "Получить значение \n атрибута css":
+
+                        var processFindElementPanel5 = new StackPanelElement(count, 10).GetStackPanelOfProcessFindElement();
+
+                        processFindElementPanel5.Children.Add(ob.CreateLabel(count, "Идентификатор"));
+
+                        processFindElementPanel5.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateLabel(count, "checkbox"));
+
+                        checkBoxPanel.Children.Add(new CreateForm().CreateCheckBox());
+
+                        ComboBoxAttrCss obj1 = new ComboBoxAttrCss();
+
+
+                        var texb1 = new StackPanelElement(count, 10).GetProcessInsertValueToTextBox();
+
+                        texb1.Children.Add(ob.CreateLabel(count, "Сравнить"));
+
+                        texb1.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        ((StackPanel)row)?.Children.Add(processFindElementPanel5);
+
+                        ((StackPanel)row)?.Children.Add(checkBoxPanel);
+
+                        ((StackPanel)row)?.Children.Add(obj1.cmbcss);
+
+                        ((StackPanel)row)?.Children.Add(texb1);
+                        break;
+                    case "Проверка URL \n страницы":
+                        var texb2 = new StackPanelElement(count, 10).GetProcessInsertValueToTextBox();
+
+                        texb2.Children.Add(ob.CreateLabel(count, "checkURL"));
+
+                        texb2.Children.Add(new TextBoxElement(count, 80.0, 30.0).GetTextBox);
+
+                        ((StackPanel)row)?.Children.Add(texb2);
+                        break;
                     default:
 
                         MessageBox.Show("notfind");
